@@ -32,6 +32,8 @@ mainForm.addEventListener("submit", function (evt) {
   }, 4700);
 });
 
+submitBtn.focus();
+
 
 function detectWord(words) {
   for (let i = 0; i < myWords.length; i++) {
@@ -61,8 +63,17 @@ rec.onresult = function (evt) {
     audio.load();
     setTimeout(() => {
       audio.play();
+      rec.stop();
+      audio.classList.remove("visually-hidden");
     }, 4000);
     myWords.push(voiceCode);
+  } else if (voiceCode.includes("salom")) {
+    setTimeout(() => {
+      renderResult("Va alaykum assalom! 🤨");
+    }, 2000);
+    myWords.push(voiceCode);
+  } else if (voiceCode.includes("gaplar")) {
+    renderResult("Tinchlik xudoga shukr!")
   }
 
 
@@ -84,21 +95,25 @@ rec.onresult = function (evt) {
     setTimeout(() => {
       renderResult("Men Abducoderman");
     }, 2000);
+  } if (voiceCode.includes("tinchmisan")) {
+    renderResult("Ha rahmat");
+    setTimeout(() => {
+      renderResult("O'zing tinchmi?");
+    }, 2000);
+    setTimeout(() => {
+      renderResult("Senga bitta savol bor... Beraymi?");
+    }, 4000);
+    if (voiceCode.includes("mayli")) {
+      renderResult("1 kilo guruchda nechta donasi bor?")
+      if (voiceCode.includes("bilmadim")) {
+        renderResult("Shuni sanab kel gaplashamiz...")
+      }
+    }
   };
+
+  rec.onend = function (evt) {
+    setTimeout(() => {
+      rec.start();
+    }, 10);
+  }
 };
-
-function isplayed() {
-  return audio.paused;
-}
-
-if (isplayed()) {
-  rec.stop()
-} else {
-  rec.start();
-}
-
-rec.onend = function (evt) {
-  setTimeout(() => {
-    rec.start();
-  }, 10);
-}
