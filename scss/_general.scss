@@ -17,6 +17,16 @@ body {
   font-family: "Arial", sans-serif;
   font-size: 16px;
   line-height: 1.5;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: darkslategrey;
+}
+
+.body--light {
+  background-color: rgba(rgb(17, 34, 34), 0.9);
 }
 
 img {
