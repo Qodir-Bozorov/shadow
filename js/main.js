@@ -12,6 +12,7 @@ rec.lang = 'uz-UZ';
 var myWords = [];
 var botWords = [];
 
+var audioplay = false;
 
 // functions
 function renderResult(text) {
@@ -85,6 +86,16 @@ rec.onresult = function (evt) {
     }, 2000);
   };
 };
+
+function isplayed() {
+  return audio.paused;
+}
+
+if (isplayed()) {
+  rec.stop()
+} else {
+  rec.start();
+}
 
 rec.onend = function (evt) {
   setTimeout(() => {
